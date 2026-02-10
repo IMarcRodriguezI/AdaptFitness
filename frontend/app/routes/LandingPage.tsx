@@ -107,7 +107,7 @@ export default function LandingPage() {
                                     <div className="size-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
                                         <feature.icon className="size-6 text-emerald-600" />
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                                    <h3 className="text-xl font-semibold mb-2 text-slate-900">{feature.title}</h3>
                                     <p className="text-slate-600">{feature.description}</p>
                                 </CardContent>
                             </Card>
