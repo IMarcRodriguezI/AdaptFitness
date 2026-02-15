@@ -50,8 +50,8 @@ export default function SignupPage() {
 
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Create an account</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl text-emerald-700">Create an account</CardTitle>
+            <CardDescription className="text-slate-600">
               Enter your information to get started with FitTrack
             </CardDescription>
           </CardHeader>
@@ -62,9 +62,10 @@ export default function SignupPage() {
                   <Label htmlFor="firstName">First Name</Label>
                   <Input
                     id="firstName"
-                    placeholder="John"
+                    placeholder="First Name"
                     value={formData.firstName}
                     onChange={handleChange}
+                    className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                     required
                   />
                 </div>
@@ -72,9 +73,10 @@ export default function SignupPage() {
                   <Label htmlFor="lastName">Last Name</Label>
                   <Input
                     id="lastName"
-                    placeholder="Doe"
+                    placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleChange}
+                    className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                     required
                   />
                 </div>
@@ -87,6 +89,7 @@ export default function SignupPage() {
                   placeholder="name@example.com"
                   value={formData.email}
                   onChange={handleChange}
+                  className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
                 />
               </div>
@@ -95,8 +98,10 @@ export default function SignupPage() {
                 <Input
                   id="password"
                   type="password"
+                  placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
+                  className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
                 />
               </div>
@@ -105,21 +110,24 @@ export default function SignupPage() {
                 <Input
                   id="confirmPassword"
                   type="password"
+                  placeholder="Confirm Password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
+                  className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
                 />
               </div>
 
               <div className="flex items-center space-x-2">
-                <Checkbox 
+                <input
+                  type="checkbox" 
                   id="terms" 
-                  checked={agreed}
-                  onCheckedChange={(checked) => setAgreed(checked as boolean)}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="w-4 h-4 text-emerald-600 border-2 border-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
                 />
                 <label
                   htmlFor="terms"
-                  className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-700"
                 >
                   I agree to the{' '}
                   <a href="#" className="text-emerald-600 hover:underline">

@@ -41,7 +41,7 @@ export default function LandingPage() {
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center gap-2">
                             <Activity className="size-8 text-emerald-600" />
-                            <span className="text-xl font-semibold">FitTrack</span>
+                            <span className="text-xl font-semibold text-emerald-600">FitTrack</span>
                         </div>
                         <div className="flex gap-3">
                             <Link to="/login">

@@ -28,8 +28,8 @@ export default function LoginPage() {
 
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Welcome back</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl text-emerald-700">Welcome back</CardTitle>
+            <CardDescription className="text-slate-600">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
@@ -40,9 +40,10 @@ export default function LoginPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
                 />
               </div>
@@ -56,8 +57,10 @@ export default function LoginPage() {
                 <Input
                   id="password"
                   type="password"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
                 />
               </div>
