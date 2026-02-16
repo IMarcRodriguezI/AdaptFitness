@@ -14,6 +14,7 @@ describe('SignupPage Test', () => {
     expect(container).toBeTruthy();
   });
 
+  // checks if the fields to input information displays 
   // checks if the fields to input information displays
   it('displays all required input fields', () => {
     render(<SignupPage />);
