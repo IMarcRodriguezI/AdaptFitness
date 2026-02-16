@@ -15,6 +15,7 @@ describe('SignupPage Test', () => {
   });
 
   // checks if the fields to input information displays 
+  // checks if the fields to input information displays
   it('displays all required input fields', () => {
     render(<SignupPage />);
     expect(screen.getByLabelText(/first name/i)).toBeTruthy();
