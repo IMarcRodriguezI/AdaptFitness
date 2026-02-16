@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import LandingPage from './LandingPage';
 
-// React-router
+// React-router 
 vi.mock('react-router', () => ({
   Link: ({ children, to }: any) => <a href={to}>{children}</a>,
 }));
