@@ -44,7 +44,7 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6">
             <Activity className="size-10 text-emerald-600" />
-            <span className="text-2xl font-bold">FitTrack</span>
+            <span className="text-2xl font-bold text-emerald-600">FitTrack</span>
           </Link>
         </div>
 

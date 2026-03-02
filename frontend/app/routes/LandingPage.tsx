@@ -45,10 +45,10 @@ export default function LandingPage() {
                         </div>
                         <div className="flex gap-3">
                             <Link to="/login">
-                                <Button variant="ghost">Log In</Button>
+                                <Button variant="outline">Log In</Button>
                             </Link>
                             <Link to="/signup">
-                                <Button>Sign Up</Button>
+                                <Button variant="default">Sign Up</Button>
                             </Link>
                         </div>
                     </div>
