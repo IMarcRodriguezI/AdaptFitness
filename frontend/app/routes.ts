@@ -9,11 +9,11 @@ export default [
   // Protected routes (with dashboard layout)
   layout("components/AppLayout.tsx", [
     route("dashboard", "routes/dashboard.tsx"),
-    route("workouts", "components/ui/workouts.tsx"),
-    route("nutrition", "components/ui/nutrition.tsx"),
-    route("goals", "components/ui/goals.tsx"),
-    route("progress", "components/ui/progress.tsx"),
-    route("profile", "components/ui/profile.tsx"),
-    route("settings", "components/ui/settings.tsx"),
+    route("workouts", "routes/workouts.tsx"),
+    route("nutrition", "routes/nutrition.tsx"),
+    route("goals", "routes/goals.tsx"),
+    // route("progress", "routes/progress.tsx"),
+    route("profile", "routes/profile.tsx"),
+    route("settings", "routes/settings.tsx"),
   ]),
 ] satisfies RouteConfig;
