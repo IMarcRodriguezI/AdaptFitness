@@ -15,7 +15,7 @@
 
 - npm install
 
-## Create .env file
+## Create .env file (exists locally)
 
 - cd AdaptFitness/backend/
 - touch .env
