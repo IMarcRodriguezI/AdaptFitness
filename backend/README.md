@@ -1,6 +1,6 @@
 # Backend built using supabase
 
-## Features (WIP)
+## Features (WIP for now)
 
 - User authentication (signup/login/logout)
 - Data persistence with Row Level Security
