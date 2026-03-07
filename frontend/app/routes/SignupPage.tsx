@@ -56,7 +56,7 @@ export default function SignupPage() {
     try {
       const fullName = `${formData.firstName} ${formData.lastName}`.trim();
       await signup(formData.email, formData.password, fullName);
-      navigate('/LandingPage');
+      navigate('/dashboard');
     } catch (err: any) {
       console.error('Signup error:', err);
       
