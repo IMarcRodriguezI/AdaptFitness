@@ -12,24 +12,32 @@
 - Git
 
 ## Install Dependencies in frontend and backend
-
-- npm install
-
+```bash
+npm install
+```
 ## Create .env file (exists locally)
 
 - cd AdaptFitness/backend/
 - touch .env
 - copy and paste this into that file (url, anon-key, and service role will be provided through discord)
-- # Supabase Configuration
-    SUPABASE_URL=replaceThis
-    SUPABASE_ANON_KEY=replaceThis
-    SUPABASE_SERVICE_ROLE_KEY=replaceThis
+### Supabase Configuration
+```
+backend:
+SUPABASE_URL=replaceThis
+SUPABASE_ANON_KEY=replaceThis
+SUPABASE_SERVICE_ROLE_KEY=replaceThis
 
-## Test the database connection to see if eveeything works
+frontend:
+VITE_SUPABASE_URL=replaceThis
+VITE_SUPABASE_ANON_KEY=replaceThis
+SUPABASE_SERVICE_ROLE_KEY=replaceThis
+```
 
-- node test-connection.js
-- node test-database.js
-
+## Test the database connection to see if everything works
+```bash
+node test-connection.js
+node test-database.js
+```
 - You should see:
 Supabase client created successfully!
 Database connected!
