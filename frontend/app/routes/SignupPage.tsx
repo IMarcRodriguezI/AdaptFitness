@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { Activity } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Checkbox } from '../components/ui/checkbox';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -16,26 +17,54 @@ export default function SignupPage() {
     confirmPassword: '',
   });
   const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
+    if (error) setError('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      setError('Passwords do not match!');
       return;
     }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+
     if (!agreed) {
-      alert('Please agree to the terms and conditions');
+      setError('Please agree to the terms and conditions');
       return;
     }
+
+    setLoading(true);
+
     // Handle signup logic here
-    console.log('Signup attempted with:', formData);
+    try {
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+      await signup(formData.email, formData.password, fullName);
+      navigate('/LandingPage');
+    } catch (err: any) {
+      console.error('Signup error:', err);
+      
+      // Shows a detailed error message
+      setError(err.message || 'Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +86,11 @@ export default function SignupPage() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                  {error}
+                </div>
+              )}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
@@ -67,6 +101,7 @@ export default function SignupPage() {
                     onChange={handleChange}
                     className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                     required
+                    disabled={loading}
                   />
                 </div>
                 <div className="space-y-2">
@@ -78,6 +113,7 @@ export default function SignupPage() {
                     onChange={handleChange}
                     className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                     required
+                    disabled={loading}
                   />
                 </div>
               </div>
@@ -91,6 +127,7 @@ export default function SignupPage() {
                   onChange={handleChange}
                   className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
+                  disabled={loading}
                 />
               </div>
               <div className="space-y-2">
@@ -103,6 +140,7 @@ export default function SignupPage() {
                   onChange={handleChange}
                   className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
+                  disabled={loading}
                 />
               </div>
               <div className="space-y-2">
@@ -115,6 +153,7 @@ export default function SignupPage() {
                   onChange={handleChange}
                   className="border-2 border-emerald-600 rounded-2xl text-slate-700"
                   required
+                  disabled={loading}
                 />
               </div>
 
@@ -124,6 +163,7 @@ export default function SignupPage() {
                   id="terms" 
                   onChange={(e) => setAgreed(e.target.checked)}
                   className="w-4 h-4 text-emerald-600 border-2 border-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+                  disabled={loading}
                 />
                 <label
                   htmlFor="terms"
@@ -140,8 +180,8 @@ export default function SignupPage() {
                 </label>
               </div>
 
-              <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700">
-                Create Account
+              <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={loading}>
+                {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
 
