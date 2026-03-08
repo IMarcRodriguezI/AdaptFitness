@@ -34,7 +34,7 @@ export default function LandingPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        <div className="min-h-screen bg-linear-to-b from-slate-50 to-white">
             {/* Navigation */}
             <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,7 +133,7 @@ export default function LandingPage() {
                             </h2>
                             <div className="space-y-4">
                                 <div className="flex gap-4">
-                                    <div className="flex-shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
+                                    <div className="shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
                                         1
                                     </div>
                                     <div>
@@ -142,7 +142,7 @@ export default function LandingPage() {
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
-                                    <div className="flex-shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
+                                    <div className="shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
                                         2
                                     </div>
                                     <div>
@@ -151,7 +151,7 @@ export default function LandingPage() {
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
-                                    <div className="flex-shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
+                                    <div className="shrink-0 size-8 bg-emerald-600 text-white rounded-full flex items-center justify-center">
                                         3
                                     </div>
                                     <div>

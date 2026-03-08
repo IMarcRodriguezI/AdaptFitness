@@ -45,7 +45,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
 
           {/* User Profile */}
           <button className="flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <div className="w-9 h-9 bg-linear-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
               <span className="text-white font-semibold text-sm">JD</span>
             </div>
             <div className="text-left hidden md:block">
