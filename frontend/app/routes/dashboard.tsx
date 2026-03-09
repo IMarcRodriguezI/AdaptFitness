@@ -100,7 +100,7 @@ export default function Dashboard() {
             title: 'Nutrition Log',
             description: 'Track your daily meals and nutritional intake',
             color: 'bg-green-500',
-            href: '/nutrition',
+            href: '/nutrition-log',
         },
         {
             icon: ScanBarcode,
@@ -114,7 +114,7 @@ export default function Dashboard() {
             title: 'Fitness Log',
             description: 'Record your workouts and track progress',
             color: 'bg-orange-500',
-            href: '/fitness',
+            href: '/fitness-log',
         },
         {
             icon: Target,

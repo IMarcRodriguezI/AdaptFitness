@@ -10,9 +10,10 @@ export default [
   layout("components/AppLayout.tsx", [
     route("dashboard", "routes/dashboard.tsx"),
     route("workouts", "routes/workouts.tsx"),
-    route("nutrition", "routes/nutrition.tsx"),
+    route("nutrition-log", "routes/Nutrition-log.tsx"),
     route("goals", "routes/goals.tsx"),
     route("calculator", "routes/calorie-calculator.tsx"),
+    route("fitness-log", "routes/Fitness-log.tsx"),
     // route("progress", "routes/progress.tsx"),
     route("profile", "routes/profile.tsx"),
     route("settings", "routes/settings.tsx"),
