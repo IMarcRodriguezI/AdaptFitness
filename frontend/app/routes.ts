@@ -12,6 +12,7 @@ export default [
     route("workouts", "routes/workouts.tsx"),
     route("nutrition", "routes/nutrition.tsx"),
     route("goals", "routes/goals.tsx"),
+    route("calculator", "routes/calorie-calculator.tsx"),
     // route("progress", "routes/progress.tsx"),
     route("profile", "routes/profile.tsx"),
     route("settings", "routes/settings.tsx"),
