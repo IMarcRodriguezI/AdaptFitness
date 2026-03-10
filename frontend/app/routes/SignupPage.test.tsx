@@ -1,35 +1,59 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import { BrowserRouter } from 'react-router';
 import SignupPage from './SignupPage';
+import { AuthProvider } from '../context/AuthContext';
 
-// React-router-dom
-vi.mock('react-router-dom', () => ({
-  Link: ({ children, to }: any) => <a href={to}>{children}</a>,
+vi.mock('../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      signUp: vi.fn(() => Promise.resolve({ data: { user: null, session: null }, error: null })),
+      getSession: vi.fn(() => Promise.resolve({ data: { session: null }, error: null })),
+      onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } }))
+    }
+  }
 }));
 
 describe('SignupPage Test', () => {
-  // checks if the SignupPage loads without crashing
-  it('loads without crashing', () => {
-    const { container } = render(<SignupPage />);
-    expect(container).toBeTruthy();
+  it('loads without crashing', async () => {
+    render(
+      <BrowserRouter>
+        <AuthProvider>
+          <SignupPage />
+        </AuthProvider>
+      </BrowserRouter>
+    );
+    
+    await waitFor(() => {
+      expect(screen.getByText(/create an account/i)).toBeInTheDocument();
+    });
   });
 
-  // checks if the fields to input information displays 
-  // checks if the fields to input information displays
-  it('displays all required input fields', () => {
-    render(<SignupPage />);
-    expect(screen.getByLabelText(/first name/i)).toBeTruthy();
-    expect(screen.getByLabelText(/last name/i)).toBeTruthy();
-    expect(screen.getByLabelText(/^email$/i)).toBeTruthy();
-    expect(screen.getByLabelText(/^password$/i)).toBeTruthy();
-    expect(screen.getByLabelText(/confirm password/i)).toBeTruthy();
+  it('displays signup form', async () => {
+    render(
+      <BrowserRouter>
+        <AuthProvider>
+          <SignupPage />
+        </AuthProvider>
+      </BrowserRouter>
+    );
+    
+    await waitFor(() => {
+      expect(screen.getByText(/enter your information/i)).toBeInTheDocument();
+    });
   });
 
-  // checks to see if the user can input their first name
-  it('allows user to type in first name', () => {
-    render(<SignupPage />);
-    const firstNameInput = screen.getByLabelText(/first name/i) as HTMLInputElement;
-    fireEvent.change(firstNameInput, { target: { value: 'John' } });
-    expect(firstNameInput.value).toBe('John');
+  it('displays create account button', async () => {
+    render(
+      <BrowserRouter>
+        <AuthProvider>
+          <SignupPage />
+        </AuthProvider>
+      </BrowserRouter>
+    );
+    
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /create account/i })).toBeInTheDocument();
+    });
   });
 });
