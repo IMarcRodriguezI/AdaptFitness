@@ -144,10 +144,10 @@ export default function Dashboard() {
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <Button variant="ghost" size="icon">
+                            <Button variant="outline" size="icon">
                                 <Bell className="h-5 w-5" />
                             </Button>
-                            <Button variant="ghost" size="icon">
+                            <Button variant="outline" size="icon">
                                 <Settings className="h-5 w-5" />
                             </Button>
                             <div className="flex items-center gap-3">
@@ -160,7 +160,7 @@ export default function Dashboard() {
                                     <p className="text-xs text-gray-500">{user.email}</p>
                                 </div>
                             </div>
-                            <Button variant="ghost" size="icon" onClick={handleLogout}>
+                            <Button variant="outline" size="icon" onClick={handleLogout}>
                                 <LogOut className="h-5 w-5" />
                             </Button>
                         </div>

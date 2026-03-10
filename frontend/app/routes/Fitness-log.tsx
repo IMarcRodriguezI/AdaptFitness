@@ -122,7 +122,7 @@ export default function FitnessLog() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-4">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={() => navigate('/dashboard')}
               className="gap-2"
@@ -131,8 +131,8 @@ export default function FitnessLog() {
               Back
             </Button>
             <div className="flex items-center gap-2">
-              <Dumbbell className="size-6 text-purple-600" />
-              <h1 className="text-2xl font-bold">Fitness Log</h1>
+              <Dumbbell className="size-6 text-emerald-600" />
+              <h1 className="text-2xl font-bold text-emerald-600">Fitness Log</h1>
             </div>
           </div>
         </div>
@@ -223,12 +223,12 @@ export default function FitnessLog() {
                   placeholder="Search exercises..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 text-emerald-600"
                 />
               </div>
               <Button
                 onClick={() => setIsAddingExercise(true)}
-                className="bg-purple-600 hover:bg-purple-700 gap-2"
+                className="bg-green-600 hover:bg-green-700 gap-2"
               >
                 <Plus className="size-4" />
                 Add Exercise
@@ -269,7 +269,7 @@ export default function FitnessLog() {
                             onClick={() => setNewExercise({ ...newExercise, workoutType: type.value as any })}
                             className={`p-2 border-2 rounded-lg text-sm transition-all ${
                               newExercise.workoutType === type.value
-                                ? 'border-purple-600 bg-purple-50'
+                                ? 'bg-green-600 hover:bg-green-700'
                                 : 'border-slate-200 hover:border-slate-300'
                             }`}
                           >
@@ -325,7 +325,7 @@ export default function FitnessLog() {
                     </div>
 
                     <div className="flex gap-2">
-                      <Button type="submit" className="flex-1 bg-purple-600 hover:bg-purple-700">
+                      <Button type="submit" className="flex-1 bg-green-600 hover:bg-green-700 gap-2">
                         Add Exercise
                       </Button>
                       <Button 

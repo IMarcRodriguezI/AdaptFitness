@@ -142,7 +142,7 @@ export default function NutritionLog() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-4">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={() => navigate('/dashboard')}
               className="gap-2"
@@ -152,7 +152,7 @@ export default function NutritionLog() {
             </Button>
             <div className="flex items-center gap-2">
               <UtensilsCrossed className="size-6 text-green-600" />
-              <h1 className="text-2xl font-bold">Nutrition Log</h1>
+              <h1 className="text-2xl font-bold text-emerald-600">Nutrition Log</h1>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ export default function NutritionLog() {
                   placeholder="Search meals..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 text-emerald-600"
                 />
               </div>
               <Button
