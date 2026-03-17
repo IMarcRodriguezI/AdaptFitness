@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Activity } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -14,6 +14,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const { login, signInWithGoogle, signInWithGithub } = useAuth();
   const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,6 +78,7 @@ export default function LoginPage() {
                   {error}
                 </div>
               )}
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input

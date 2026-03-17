@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../context/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
@@ -29,15 +30,27 @@ import { useAuth } from '../context/AuthContext';
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { user: currentUser, logout } = useAuth();
     const [selectedPeriod, setSelectedPeriod] = useState('week');
 
-    // Mock user data
+    const userName =
+        currentUser?.user_metadata?.name ||
+        (currentUser?.email ? currentUser.email.split('@')[0] : 'User');
+    const userEmail = currentUser?.email || 'Unknown';
+    const userAvatar = currentUser?.user_metadata?.avatar || '';
+    const userInitials = userName
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+
     const user = {
-        name: 'Alex Johnson',
-        email: 'alex.johnson@example.com',
-        avatar: '',
-        initials: 'AJ',
+        name: userName,
+        email: userEmail,
+        avatar: userAvatar,
+        initials: userInitials,
     };
 
     // Mock stats data
@@ -131,9 +144,10 @@ export default function Dashboard() {
     const handleLogout = async () => {
         try {
             await logout();
-            navigate('/login');
         } catch (error) {
-            console.error('Logout failed:', error);
+            console.error('Logout error:', error);
+        } finally {
+            navigate('/login');
         }
     };
 
