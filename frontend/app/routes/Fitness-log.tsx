@@ -116,7 +116,7 @@ export default function FitnessLog() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-slate-50 to-white">
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -202,7 +202,7 @@ export default function FitnessLog() {
                 </div>
 
                 <div className="pt-4 border-t">
-                  <div className="p-3 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+                  <div className="p-3 bg-linear-to-br from-purple-50 to-blue-50 rounded-lg border border-purple-200">
                     <p className="text-sm font-medium text-purple-900 mb-1">Keep it up! 💪</p>
                     <p className="text-xs text-purple-700">
                       You've logged {totalExercises} exercises today
