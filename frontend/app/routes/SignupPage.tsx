@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Activity } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -20,8 +20,14 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { signup } = useAuth();
+  const { signup, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -59,7 +65,7 @@ export default function SignupPage() {
       navigate('/dashboard');
     } catch (err: any) {
       console.error('Signup error:', err);
-      
+
       // Shows a detailed error message
       setError(err.message || 'Signup failed. Please try again.');
     } finally {
@@ -159,8 +165,8 @@ export default function SignupPage() {
 
               <div className="flex items-center space-x-2">
                 <input
-                  type="checkbox" 
-                  id="terms" 
+                  type="checkbox"
+                  id="terms"
                   onChange={(e) => setAgreed(e.target.checked)}
                   className="w-4 h-4 text-emerald-600 border-2 border-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
                   disabled={loading}
