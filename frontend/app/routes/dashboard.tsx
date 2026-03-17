@@ -24,9 +24,12 @@ import {
     Bell,
 } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { ProtectedRoute } from '../components/ProtectedRoute';
+import { useAuth } from '../context/AuthContext';
 
 export default function Dashboard() {
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const [selectedPeriod, setSelectedPeriod] = useState('week');
 
     // Mock user data
@@ -125,9 +128,13 @@ export default function Dashboard() {
         },
     ];
 
-    const handleLogout = () => {
-        // In a real app, this would clear auth tokens
-        navigate('/login');
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
     };
 
     return (

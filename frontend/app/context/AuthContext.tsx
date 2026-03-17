@@ -7,6 +7,8 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<void>;
     signup: (email: string, password: string, name: string) => Promise<void>;
     logout: () => Promise<void>;
+    signInWithGoogle: () => Promise<any>;  // ← ADD THIS
+    signInWithGithub: () => Promise<any>;  // ← ADD THIS
     isAuthenticated: boolean;
     loading: boolean;
 }
@@ -18,16 +20,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Checks if there are any active sessions
+        // Check for active sessions
         supabase.auth.getSession().then(({ data: { session } }) => {
             setUser(session?.user ?? null);
             setLoading(false);
         });
 
-        // Checks for any authentication changes
+        // Listen for auth changes
         const {
             data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
+        } = supabase.auth.onAuthStateChange((_event: string, session: Session | null) => {
             setUser(session?.user ?? null);
         });
 
@@ -47,17 +49,59 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     const login = async (email: string, password: string) => {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });
 
-        if (error) throw error;
+        if (error) {
+            console.error('Login error:', error);
+            throw error;
+        }
+
+        if (!data.user) {
+            throw new Error('Login failed - no user login details detected');
+        }
+
+        setUser(data.user);
     };
 
     const logout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
+        setUser(null);
+    };
+
+    const signInWithGoogle = async () => {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/dashboard`,
+            },
+        });
+
+        if (error) {
+            console.error('Google sign-in error:', error);
+            throw error;
+        }
+
+        return data;
+    };
+
+    const signInWithGithub = async () => {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'github',
+            options: {
+                redirectTo: `${window.location.origin}/dashboard`,
+            },
+        });
+
+        if (error) {
+            console.error('GitHub sign-in error:', error);
+            throw error;
+        }
+
+        return data;
     };
 
     return (
@@ -67,11 +111,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 login,
                 signup,
                 logout,
+                signInWithGoogle,
+                signInWithGithub,
                 isAuthenticated: !!user,
                 loading,
             }}
         >
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 }
