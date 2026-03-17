@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Outlet } from 'react-router';
 import { useAuth } from '../context/AuthContext';
+import { ProtectedRoute } from './ProtectedRoute';
 
 export default function AppLayout() {
   const { isAuthenticated, loading } = useAuth();
@@ -18,8 +19,8 @@ export default function AppLayout() {
   }
 
   return (
-    <div>
+    <ProtectedRoute>
       <Outlet />
-    </div>
+    </ProtectedRoute>
   );
 }
