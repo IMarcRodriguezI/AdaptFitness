@@ -5,6 +5,7 @@ export default [
   index("routes/LandingPage.tsx"),
   route("login", "routes/LoginPage.tsx"),
   route("signup", "routes/SignupPage.tsx"),
+  route("auth/callback", "routes/auth.callback.tsx"),
 
   // Protected routes (with dashboard layout)
   layout("components/AppLayout.tsx", [
